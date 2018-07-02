@@ -35,7 +35,7 @@
 
                                         <!--<img src="'//dn-cnode.qbox.me/'+i.id" />-->
                                         <span id="avatar">
-                                                  <a :href="url"><img :src="i.author.avatar_url" width="30px"
+                                                  <a ><img :src="i.author.avatar_url" width="30px"
                                                                       height="30px"/></a>
 
                                                 </span>
@@ -73,8 +73,10 @@
                                 </el-row>
 
                             </div>
-                            <el-pagination id="pages" background layout="prev, pager, next" :total="$api.get('topics',page)">
-                            </el-pagination>
+                            <div class="block">
+                                <el-pagination layout="prev, pager, next" @current-change="currentChange" :total="this.list.length*this.page">
+                                </el-pagination>
+                            </div>
                         </el-card>
                     </el-col>
                 </el-row>
@@ -88,8 +90,6 @@
 
 </template>
 
-
-
 <script>
     import Header from '../components/header.vue'
     import Footer from '../components/footer.vue'
@@ -102,7 +102,9 @@
         },
         data() {
             return {
-                list: []
+                list: [],
+                page:1,
+                limit:20,
             }
 
         },
@@ -113,9 +115,17 @@
 
         methods: {
             getData() {
-                this.$api.get('topics', null, r => {
+                this.$api.get('topics', {
+                    page: this.page,
+                    limit :this.limit
+                }, r => {
                     this.list = r.data
                 })
+            },
+            currentChange(size){
+                this.page=size;
+                this.getData();
+                console.log(size)
             }
 
         }

@@ -7,6 +7,12 @@ export default {
             result = '问答'
         } else if(str === 'share') {
             result = '分享'
+        }else if(str==='good'){
+            result='精华'
+        }else if(str==='job'){
+            result='招聘'
+        }else{
+            result='测试'
         }
     
         return result

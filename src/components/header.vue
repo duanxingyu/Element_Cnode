@@ -5,7 +5,7 @@
                 <img id="logo_img" src="https://o4j806krb.qnssl.com/public/images/cnodejs_light.svg" width="150px" height="45px" />
             </router-link>
 
-            <el-menu-item>
+            <el-menu-item index="0">
 
                 <el-input placeholder="请输入内容" v-model="input5" class="input-with-select">
 
@@ -45,7 +45,8 @@
         data() {
             return {
                 activeIndex: '1',
-                activeIndex2: '1'
+                activeIndex2: '1',
+                input5:''
             };
         },
         methods: {
